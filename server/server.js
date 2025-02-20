@@ -1,70 +1,31 @@
 import express from "express";
 import cors from "cors";
-//import records from "./routes/record.js"
+import { Server } from "socket.io"; // ✅ Importation correcte
+import { createServer } from "http"; // ✅ Importation du serveur HTTP
+
 import users from "./routes/users.js";
-import rooms from "./routes/rooms.js"
-const socketIo = require("socket.io");
-const initSocket = require('./routes/socket.js');
+import rooms from "./routes/rooms.js";
+import { initSocket } from "./routes/socket.js"; 
+
 
 const app = express();
-const http = require('http');
-const server = http.createServer(app); // Le serveur HTTP que Socket.IO va utiliser
-const io = socketIo(server, {
+const server = createServer(app); // ✅ Création du serveur HTTP
+
+const io = new Server(server, { // ✅ Correction ici
   cors: {
-    origin: "http://127.0.0.1:5500", // Frontend (si sur un autre port/domaine)
+    origin: "http://localhost:5173/",
     methods: ["GET", "POST"]
   }
 });
 
-
 const PORT = process.env.PORT || 8080;
-
 
 app.use(cors());
 app.use(express.json());
-//app.use("/", records);
 app.use("/users", users);
 app.use("/rooms", rooms);
-initSocket(io);
 
-/* app.get("/", (req, res) => {
-res.sendFile("D:/Epitech/T5/JSF-600/T-JSF-600-PAR_13/index.html")
-});  */
-
-/*//test 
-//SOCKET IO Messages
-io.on("connection", function(socket) {
-  // Chat message event listening
-  socket.on("chat message", function(msg) {
-      // Chat message event broadcasting
-      io.emit("chat message", msg);
-  });
-
-  // Chat message event listening
-  socket.on("/nick", function(msg) {
-    // Chat message event broadcasting
-    io.emit("chat message", msg);
-});
-
-  // Chat message event listening
-  socket.on("/list", function(msg) {
-    // Chat message event broadcasting
-    io.emit("chat message", msg);
-});
-
-  // Chat message event listening
-  socket.on("/create", function(msg) {
-    // Chat message event broadcasting
-    io.emit("chat message", msg);
-});
-
-});*/
-
-
-// start the Express server
-/* app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-}); */
+initSocket(io); // ✅ Initialisation des sockets
 
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

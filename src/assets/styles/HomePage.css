@@ -1,0 +1,162 @@
+/* Conteneur principal */
+.chat-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  /* Liste des contacts (droite) */
+  .contact-list {
+    width: 25%;
+    background: white;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .contact-name{
+    font-size: 18px;
+  }
+  .contact-list h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+  
+  .contact-item {
+    display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 3px;
+        cursor: pointer;
+        margin: 6px;
+        border-radius: 10px;
+  }
+  
+  /* .contact-item:hover {
+    background: #F0FFC1#8DAE20;
+    transition: ease-in 1s;
+  } */
+  .contact-img.active{
+    background: #F0FFC1;
+  }
+  .contact-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .contact-last-msg {
+    color: gray;
+    font-size: 17px;
+  }
+  
+  /* Section des messages (gauche) */
+  .chat-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header du chat */
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+.contact-list .header{
+    padding-bottom: 49px;
+    border-bottom: 0.5px solid gray;
+}
+
+  .contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .contact-header-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: gray;
+  }
+  
+  /* Liste des messages */
+  .message-list {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: url(../images/backconv.png);
+    background-size: cover;
+  }
+  
+  .message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 17px;
+  }
+  
+  .message-me {
+    background: #68A691;
+    align-self: flex-end;
+  }
+  
+  .message-contact {
+    background: #89a28c;
+    align-self: flex-start;
+  }
+  
+  .message-time {
+    font-size: 13px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .seen {
+    color: #00bfff;
+  }
+  
+  /* Barre de saisie */
+  .chat-input {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  .send-btn {
+    background:#68A691;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 30%;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+ 

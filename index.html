@@ -1,65 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socket.io chat</title>
-</head>
-<body>
-    <div id="messages"></div>
-    <form action="">
-        <input id="msg" autocomplete="off" /> <button>Send</button>
-    </form>
-    <button id="switch">Switch</button>
-    <br><br>
-    <div id="general"></div>
-    <script src="http://127.0.0.1:8080/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-        var salon ="message"
-        $(function(){
-            
-            var socket = io("http://127.0.0.1:8080");
-            $("form").submit(function (e) {
-                e.preventDefault();
-
-                socket.emit(salon, $("#msg").val());
-                $("#msg").val("");
-                
-                /* socket.emit("message", $("#msg").val());
-                $("#msg").val(""); */
-
-                return false
-            })
-
-            socket.on(salon, function(msg){
-                if (salon == "message") {
-                    $(`#${salon}s`).append($("<p>").text(msg))
-                }
-                if (salon == "#general"){
-                    $(`${salon}`).append($("<p>").text(msg))
-                }
-                
-            })
-
-            /* socket.on('message', function(msg){
-                $("#messages").append($("<p>").text(msg))
-            }) */
-        });
-
-        $("#switch").click(function (e) {
-                e.preventDefault();
-                console.log(salon)
-
-                if(salon =="#general"){
-                    salon = "message"
-                }
-                else{
-                    salon = "#general"
-                }
-                return false
-            })
-
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello Message</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

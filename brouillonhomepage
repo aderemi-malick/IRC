@@ -1,0 +1,108 @@
+import React, { useState } from "react";
+import { FaRegPaperPlane, FaCheck, FaCheckDouble } from "react-icons/fa";
+import { IoIosCloseCircle } from "react-icons/io";
+// import {name} from "./LoginPage";
+import { FiInfo } from "react-icons/fi";
+import "../assets/styles/HomePage.css"; // Import du CSS
+
+const messagesData = [
+  { id: 1, text: "Salut, comment tu vas ?", sender: "contact", time: "10:30", status: "seen" },
+  { id: 2, text: "Hey, je vais bien et toi ?", sender: "me", time: "10:31", status: "sent" },
+  
+];
+
+const contacts = [
+  { id: 1, name: "Alice", img: "", lastMessage: "coucou" },
+  { id: 3, name: "Bob", img: "", lastMessage: "rendez vous à 14h" },
+ 
+];
+
+const HomePage = () => {
+  const [messages, setMessages] = useState(messagesData);
+  const [newMessage, setNewMessage] = useState("");
+
+  const sendMessage = () => {
+    if (newMessage.trim() !== "") {
+      const newMsg = {
+        id: messages.length + 1,
+        text: newMessage,
+        sender: "me",
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        status: "sent",
+      };
+      setMessages([...messages, newMsg]);
+      setNewMessage("");
+    }
+  };
+
+//   const selectContact = () => {
+//     if ()
+//   }x
+
+  return (
+    <div className="chat-container">
+      {/* === LISTE DES CONTACTS (DROITE) === */}
+      <div className="contact-list">
+        <div className="header">
+        <IoIosCloseCircle size={25} color="#5941FE"/>
+        </div>
+        <h2>Discussions</h2>
+        {contacts.map((contact) => (
+          <div key={contact.id} className="contact-item">
+            <img src={contact.img} alt={contact.name} className="contact-img" />
+            <div>
+              <h3>{contact.name}</h3>
+              <p className="contact-last-msg">{contact.lastMessage}</p>
+            </div>
+            <br/>
+          </div>
+        ))}
+      </div>
+
+      {/* === MESSAGES (GAUCHE) === */}
+      <div className="chat-section">
+        {/* HEADER DU CONTACT */}
+        <div className="chat-header">
+          <div className="contact-info">
+            <img src="" alt="Contact" className="contact-header-img" />
+            <h2>Alice</h2>
+          </div>
+          <button className="info-btn">
+            <FiInfo size={24} />
+          </button>
+        </div>
+
+        {/* MESSAGES */}
+        <div className="message-list">
+          {messages.map((msg) => (
+            <div key={msg.id} className={`message ${msg.sender === "me" ? "message-me" : "message-contact"}`}>
+              <p>{msg.text}</p>
+              <div className="message-time">
+                <span>{msg.time}</span>
+                {msg.status === "sent" && <FaCheck size={12} />}
+                {msg.status === "received" && <FaCheckDouble size={12} />}
+                {msg.status === "seen" && <FaCheckDouble size={12} className="seen" />}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* BARRE DE SAISIE */}
+        <div className="chat-input">
+          <input
+            type="text"
+            placeholder="Écrire un message..."
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+          />
+          <button onClick={sendMessage} className="send-btn">
+            <FaRegPaperPlane size={20} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;

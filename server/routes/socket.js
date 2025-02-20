@@ -1,6 +1,7 @@
-const db = require("../db/connection.js")
+import * as db from "../db/connection.js";
+// const db = require("../db/connection.js")
 
-const initSocket = (io) => {
+export function initSocket(io) {
     io.on('connection', (socket) => {
       console.log('Un utilisateur est connecté');
   
@@ -25,17 +26,6 @@ const initSocket = (io) => {
       }); */
 
       // 
-
-      socket.on('joinRoom', (room) => {
-        console.log(`L'utilisateur rejoint la room: ${room}`);
-        socket.join(room);
-        socket.emit('message', `Bienvenue dans la room ${room}`);
-      });
-    
-      socket.on('sendMessage', (room, message) => {
-        io.to(room).emit('message', message);
-      });
-
       const salons = ["#general", "message"];
 
       for (const salon of salons) {
@@ -61,5 +51,3 @@ const initSocket = (io) => {
       });
     });
   };
-  
-  module.exports = initSocket;

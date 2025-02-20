@@ -1,0 +1,117 @@
+.login-page{
+    display: flex;
+    flex-direction: row;
+}
+ 
+.left{
+background-color: #68A691;
+width: 60vw;
+height: 98vh;
+ 
+}
+ 
+.left h1{
+    color: #68A691;
+    text-align: start;
+    margin-left: 2vw;
+    /* font-family:; */
+ 
+}
+ 
+.left h3{
+    color: #68A691;
+    text-align: start;
+    margin-left: 2vw;
+    margin-top: 6vw;
+    font-style: italic;
+    font-size: 45px;
+    /* font-family:; */
+ 
+}
+ 
+ 
+ 
+.right{
+ 
+    display: flex;
+    width: 40vw;
+    flex-direction: column;
+    margin-top: 20vh;
+    margin-left: 10vw;
+}
+.right h3{
+ 
+    font-size: 30px;
+}
+  
+label{
+    display: flex;
+    display: column;
+    color: #3D3D3D;
+    font-size: 17px;
+}
+ 
+ 
+ 
+input{
+    height: 5vh;
+    width: 26vw;
+    transition: border-color 0.3s ease;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 3px;
+    outline: none;
+    margin-top: 1vh;
+}
+input::selection{
+    background-color: #3D3D3D;
+}
+ 
+.div-button{
+ 
+    display:flex;
+    flex-direction: column;
+    padding-top: 1vw;
+ 
+}
+ 
+.div-button button {
+    width: 200px;
+    height: 6vh;
+    border-radius: 4px;
+    border: none;
+    background-color: #68A691;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .succes {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .error {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background-color: #d72929;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+  }

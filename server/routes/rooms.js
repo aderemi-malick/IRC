@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 // This section will help you get a single room by id
 router.get("/:roomName", async (req, res) => {
   let collection = await db.collection("rooms");
-  let query = { roomname: `#${req.params.roomName}` };
+  let query = { roomname: `#${req.params.roomName}`};
   let result = await collection.findOne(query);
 
   if (!result) res.send("Not found").status(404);
