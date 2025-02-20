@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+    <script>
+        const API_URL = "http://127.0.0.1:8080"
+        // Fonction pour récupérer la liste des films
+        async function getMovies() {
+            try {
+                const response = await fetch(`${API_URL}/api/sample/GetMovies`);
+                const movies = await response.json();
+                const movieList = document.getElementById('movie-list');
+                movieList.innerHTML = ''; // Vider la liste avant d'ajouter les films
+                movies.forEach(movie => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = movie.name; // Affiche le nom du film (vous pouvez ajuster selon la structure de vos films)
+                    movieList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Erreur lors de la récupération des films:', error);
+            }
+        }
+
+        // Fonction pour ajouter un utilisateur
+        async function addUser() {
+            try {
+                const response = await fetch(`${API_URL}/api/sample/AddUsers`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const result = await response.json();
+                alert(result);  // Affiche un message lorsque l'utilisateur est ajouté
+            } catch (error) {
+                console.error('Erreur lors de l\'ajout de l\'utilisateur:', error);
+            }
+        }
+
+        // Fonction pour supprimer un utilisateur
+        async function deleteUser() {
+            try {
+                const response = await fetch(`${API_URL}/api/sample/AddUsers`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const result = await response.json();
+                alert(result);  // Affiche un message lorsque l'utilisateur est supprimé
+            } catch (error) {
+                console.error('Erreur lors de la suppression de l\'utilisateur:', error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Test API Movies and Users</h1>
+    
+    <!-- Section pour afficher la liste des films -->
+    <section>
+        <h2>Liste des Films</h2>
+        <button onclick="getMovies()">Charger les Films</button>
+        <ul id="movie-list"></ul>
+    </section>
+
+    <!-- Section pour ajouter un utilisateur -->
+    <section>
+        <h2>Ajouter un Utilisateur</h2>
+        <button onclick="addUser()">Ajouter l'Utilisateur Rob</button>
+    </section>
+
+    <!-- Section pour supprimer un utilisateur -->
+    <section>
+        <h2>Supprimer un Utilisateur</h2>
+        <button onclick="deleteUser()">Supprimer l'Utilisateur</button>
+    </section>
+</body>
+</html>
