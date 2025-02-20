@@ -8,7 +8,7 @@ const multer = require('multer')
 let app = express()
 app.use(cors())
 
-let CONNECTION_STRING ="mongodb+srv://malickaderemi:malickaderemi@irc.lkr9u.mongodb.net/"
+let CONNECTION_STRING ="mongodb+srv://test:test@irc.lkr9u.mongodb.net/"
 
 let DATABASENAME ="sample_mflix" // test database
 let database
